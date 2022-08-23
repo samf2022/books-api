@@ -1,8 +1,9 @@
 const express = require('express')
+const app = express()
 const booksRouter = require('./routes/booksRoutes')
 const mongoose = require('mongoose')
 const { MONGO_USER, MONGO_PASSWORD, MONGO_IP, MONGO_PORT } = require('./config/config')
-const app = express()
+
 
 mongoose.connect(
     `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`)
