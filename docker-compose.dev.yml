@@ -5,9 +5,18 @@ services:
       context: .
       args:
         NODE_ENV: development
-    ports:
-      - 3000:3000
     volumes:
       - ./api:/usr/src/app
       - /usr/src/app/node_modules
+    environment:
+      - NODE_ENV=development
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - MONGO_IP=${MONGO_IP}
+      - MONGO_PORT=${MONGO_PORT}
     command: npm run dev
+  database:
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+  

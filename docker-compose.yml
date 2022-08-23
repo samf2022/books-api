@@ -3,5 +3,21 @@ services:
   api:
     build: .
     container_name: books-api
+    environment:
+      - PORT=${PORT}
     ports:
-      - 3000:3000
+      - ${PORT}:${PORT}
+    depends_on:
+      - database
+
+  database:
+    image: mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - db-mongo:/data/db
+
+volumes:
+  db-mongo:
